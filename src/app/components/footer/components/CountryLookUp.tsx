@@ -2,9 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-type CountryLookUpProps = {};
-
-export const CountryLookUp = ({}: CountryLookUpProps) => {
+export const CountryLookUp = () => {
   const [country, setCountry] = useState("United States");
 
   useEffect(() => {
