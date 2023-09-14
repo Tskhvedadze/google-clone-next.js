@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { Pagination } from "..";
 
 export const ImageSearchResults = ({ results }: any) => {
   return (
-    <div className="pb-24 mt-4">
+    <div className="sm:pb-24 pb-40 mt-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-3 space-x-4">
         {results.items.map((result: any) => {
           return (
@@ -30,6 +31,9 @@ export const ImageSearchResults = ({ results }: any) => {
             </div>
           );
         })}
+      </div>
+      <div className="ml-16">
+        <Pagination />
       </div>
     </div>
   );

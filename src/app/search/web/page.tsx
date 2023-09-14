@@ -2,12 +2,12 @@ import { WebSearchResults } from "@/app/components";
 import Link from "next/link";
 
 async function WebSearchPage({
-  searchParams: { searchTerm },
+  searchParams: { searchTerm, start },
 }: {
-  searchParams: { searchTerm: string };
+  searchParams: { searchTerm: string; start: string | "1" };
 }) {
   const response = await fetch(
-    `https://www.googleapis.com/customsearch/v1?key=${process.env.GOOGLE_API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${searchTerm}`
+    `https://www.googleapis.com/customsearch/v1?key=${process.env.GOOGLE_API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${searchTerm}&start=${start}`
   );
   const data = await response.json();
   const results = data?.items;
