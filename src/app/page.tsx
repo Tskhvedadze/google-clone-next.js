@@ -6,7 +6,6 @@ export default function Home() {
   return (
     <>
       <HomeHeader />
-
       <div className="flex flex-col items-center mt-24">
         <Image
           width={300}
