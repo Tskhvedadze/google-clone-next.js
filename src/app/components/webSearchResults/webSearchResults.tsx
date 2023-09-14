@@ -10,8 +10,6 @@ export const WebSearchResults = ({ results }: any) => {
         {results.searchInformation?.formattedSearchTime} seconds)
       </p>
       {results.items?.map((result: any) => {
-        console.log(result);
-
         return (
           <div className="mb-8 max-w-xl" key={result.link}>
             <div className="group flex flex-col">
