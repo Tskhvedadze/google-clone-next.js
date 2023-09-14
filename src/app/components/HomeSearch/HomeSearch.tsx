@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import Image from "next/image";
+import { VoiceSearch } from "./components/VoiceSearch";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillMicFill } from "react-icons/bs";
 
@@ -12,6 +13,13 @@ type HomeSearchProps = {};
 export const HomeSearch = ({}: HomeSearchProps) => {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const {
+    listening,
+    transcript,
+    browserSupportsSpeechRecognition,
+    startListening,
+    stopListening,
+  } = VoiceSearch(setInput);
   const router = useRouter();
 
   function submitHandler(e: FormEvent<HTMLFormElement | HTMLButtonElement>) {
@@ -32,6 +40,9 @@ export const HomeSearch = ({}: HomeSearchProps) => {
     setLoading(false);
   }
 
+  if (!browserSupportsSpeechRecognition)
+    console.warn("Browser does not support speech recognition.");
+
   return (
     <>
       <form
@@ -40,12 +51,19 @@ export const HomeSearch = ({}: HomeSearchProps) => {
       >
         <AiOutlineSearch className="text-xl text-gray-500 mr-3" />
         <input
-          value={input}
+          value={input || transcript}
           onChange={(e) => setInput(e.target.value)}
           type="text"
           className="flex-grow focus:outline-none"
         />
-        <BsFillMicFill className="text-lg " />
+        <BsFillMicFill
+          className={`text-lg cursor-pointer ${
+            !listening && "hover:text-gray-600"
+          } active:text-gray-700 duration-200 ${listening && "text-red-300"}`}
+          onClick={() => {
+            !listening ? startListening() : stopListening();
+          }}
+        />
       </form>
 
       <div className="flex flex-col space-y-2 sm:space-y-0 sm:space-x-4 justify-center sm:flex-row mt-8">

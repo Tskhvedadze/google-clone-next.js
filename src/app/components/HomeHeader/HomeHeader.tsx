@@ -5,7 +5,7 @@ type HomeHeaderProps = {};
 
 export const HomeHeader = ({}: HomeHeaderProps) => {
   return (
-    <header className="flex justify-end p-5 text-sm ">
+    <header className="flex justify-end p-5 text-sm select-none">
       <div className="flex space-x-4 items-center">
         <Link href="https://mail.google.com" className=" hover:underline">
           Gmail
